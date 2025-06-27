@@ -6,6 +6,7 @@ import { appConfig, dbConfig, minioConfig } from './common/config/app.config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionFilter } from './common/filter/all-exceptions.filter';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AllExceptionFilter } from './common/filter/all-exceptions.filter';
 
     RconModule,
     UserModule,
+    AuthModule,
   ],
   providers: [
     {

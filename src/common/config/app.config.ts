@@ -8,7 +8,7 @@ export const CONFIG_MINIO_TOKEN = process.env.CONFIG_MINIO_TOKEN || 'minio';
 export const appConfig = registerAs(
   CONFIG_APP_TOKEN,
   (): AppConfig => ({
-    host: process.env.APP_HOST || '0.0.0.0',
+    host: process.env.APP_HOST || 'localhost',
     port: parseInt(process.env.APP_PORT) || 5000,
     cors_domains: process.env.CORS_DOMAINS || '*',
   }),

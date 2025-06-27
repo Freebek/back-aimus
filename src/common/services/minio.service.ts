@@ -49,7 +49,7 @@ export class MinioService {
         };
         await this.minioClient.setBucketPolicy(
           this.bucketName,
-          JSON.stringify(policy)
+          JSON.stringify(policy),
         );
       }
     } catch (error) {
@@ -58,30 +58,30 @@ export class MinioService {
     }
   }
 
-  async uploadFile(file: Express.Multer.File, folder: string): Promise<string> {
-    try {
-      const fileName = `${folder}/${Date.now()}-${file.originalname}`;
-      await this.minioClient.putObject(
-        this.bucketName,
-        fileName,
-        file.buffer,
-        file.size,
-        {
-          'Content-Type': file.mimetype,
-        }
-      );
-      return `${this.publicUrl}/${this.publicBucket}/${fileName}`;
-    } catch (error) {
-      this.logger.error('Error uploading file to MinIO:', error);
-      throw error;
-    }
-  }
+  // async uploadFile(file: Express.Multer.File, folder: string): Promise<string> {
+  //   try {
+  //     const fileName = `${folder}/${Date.now()}-${file.originalname}`;
+  //     await this.minioClient.putObject(
+  //       this.bucketName,
+  //       fileName,
+  //       file.buffer,
+  //       file.size,
+  //       {
+  //         'Content-Type': file.mimetype,
+  //       }
+  //     );
+  //     return `${this.publicUrl}/${this.publicBucket}/${fileName}`;
+  //   } catch (error) {
+  //     this.logger.error('Error uploading file to MinIO:', error);
+  //     throw error;
+  //   }
+  // }
 
   async deleteFile(filePath: string): Promise<void> {
     try {
       const fileName = filePath.replace(
         `${this.publicUrl}/${this.publicBucket}/`,
-        ''
+        '',
       );
       await this.minioClient.removeObject(this.bucketName, fileName);
     } catch (error) {

@@ -1,7 +1,3 @@
-import { StoreDocument } from 'src/models/schemas/store.schema';
-import { UserDocument } from 'src/models/schemas/user.schema';
-import { DefaultStatusEnum, UserRoleEnum } from 'src/types/global';
-
 export namespace UserInterfaces {
   export interface LogInRequest {
     phone_number: string;
