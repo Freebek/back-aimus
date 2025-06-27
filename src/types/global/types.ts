@@ -1,29 +1,16 @@
 import { Request } from 'express';
 import {
-  DayOfWeekEnum,
   DefaultStatusEnum,
-  FilterTypeEnum,
-  FormComponentsEnum,
   LanguagesEnum,
-  OperationTypeEnum,
   PermissionMethodsEnum,
-  StatusWithAchiveEnum,
   UserRoleEnum,
 } from './constants';
 
-export type UserRoleType =
-  | UserRoleEnum.Admin
-  | UserRoleEnum.Seller
-  | UserRoleEnum.Customer;
+export type UserRoleType = UserRoleEnum.Admin | UserRoleEnum.Player;
 
 export type DefaultStatusType =
   | DefaultStatusEnum.Active
   | DefaultStatusEnum.InActive;
-
-export type StatusWithAchiveType =
-  | StatusWithAchiveEnum.Active
-  | StatusWithAchiveEnum.Archive
-  | StatusWithAchiveEnum.InActive;
 
 export type PermissionMethodsType =
   | PermissionMethodsEnum.GET
@@ -62,15 +49,6 @@ export type UserFromToken = {
   role: UserRoleType;
 };
 
-export type FilterType = FilterTypeEnum;
-
-export type FormComponentsType = FormComponentsEnum;
-
-export type OperationTypeType =
-  | OperationTypeEnum.Ecommerce
-  | OperationTypeEnum.Booking
-  | OperationTypeEnum.Service;
-
 export type LanguagesType =
   | LanguagesEnum.English
   | LanguagesEnum.Uzbek
@@ -87,19 +65,14 @@ export type StoreSocialNetworksType = {
   tiktok?: string;
 };
 
-export type DayOfWeekType =
-  | DayOfWeekEnum.Monday
-  | DayOfWeekEnum.Tuesday
-  | DayOfWeekEnum.Wednesday
-  | DayOfWeekEnum.Thursday
-  | DayOfWeekEnum.Friday
-  | DayOfWeekEnum.Saturday
-  | DayOfWeekEnum.Sunday;
-
 export interface DayWorkTimeType {
   open: boolean; // true = open, false = weekend/closed
   startTime?: string; // format: "09:00"
   endTime?: string; // format: "18:00"
 }
 
-export type StoreWorkTimeType = Record<DayOfWeekType, DayWorkTimeType>;
+export type UserSteamProfileType = {
+  personal_name: String;
+  avatar: String;
+  profile_url: String;
+};

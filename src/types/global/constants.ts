@@ -1,7 +1,6 @@
 export enum UserRoleEnum {
   Admin = 'admin',
-  Seller = 'seller',
-  Customer = 'customer',
+  Player = 'player',
 }
 
 export enum DefaultStatusEnum {
