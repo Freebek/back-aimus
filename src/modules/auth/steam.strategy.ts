@@ -6,14 +6,14 @@ import { Strategy } from 'passport-steam';
 export class SteamStrategy extends PassportStrategy(Strategy, 'steam') {
   constructor() {
     super({
-      returnURL: 'https://aimus.uz/',
-      realm: 'https://aimus.uz/',
+      returnURL: 'http://localhost:5000/v1/auth/steam/return',
+      realm: 'http://localhost:5000/',
       apiKey: process.env.STEAM_API_KEY || 'D9346BB124881D8298117C90DE68C2F9',
     });
   }
 
   validate(identifier: string, profile: any, done: Function) {
-    console.log(profile, 'PROFILE');
+    console.dir(profile, { depth: null }); // show full nested structure
     done(null, profile);
   }
 }
