@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { Model } from 'mongoose';
@@ -11,24 +12,24 @@ export class AuthService {
   constructor(
     @InjectModel(User.name)
     private readonly userModel: Model<UserDocument>,
+    private readonly jwtService: JwtService,
   ) {}
 
   async validateOrCreateSteamUser(profile: any): Promise<string> {
-    const steamId = profile.id;
+    const steamUser = profile._json;
 
     const user = await this.userModel.create({
-      full_name: 'Imron Shoimov',
-      username: 'codex',
-      password: 'imron123',
-      role: UserRoleEnum.Player,
-      steam_id: steamId,
-      created_at: getCurrentTimeHelper(),
+      steam_id: steamUser.steamid,
+      steam_name: steamUser.personaname,
+      steam_avatar: steamUser.avatarfull,
+      is_steam_linked: true,
+      last_login_at: getCurrentTimeHelper(),
     });
 
-    console.log(user, 'USER ID');
+    const token = this.jwtService.sign({
+      id: user._id,
+    });
 
-    console.log(profile, 'Profile');
-
-    return 'ok';
+    return token;
   }
 }

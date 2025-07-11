@@ -6,8 +6,8 @@ import { Strategy } from 'passport-steam';
 export class SteamStrategy extends PassportStrategy(Strategy, 'steam') {
   constructor() {
     super({
-      returnURL: 'http://localhost:5000/v1/auth/steam/return',
-      realm: 'http://localhost:5000/',
+      returnURL: 'https://654222718948.ngrok-free.app/v1/auth/steam/return',
+      realm: 'https://654222718948.ngrok-free.app/',
       apiKey: process.env.STEAM_API_KEY || 'D9346BB124881D8298117C90DE68C2F9',
     });
   }

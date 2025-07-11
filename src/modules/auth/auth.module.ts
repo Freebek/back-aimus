@@ -12,7 +12,7 @@ import { UserModelDefinition } from 'src/models/schemas/user.schema';
     MongooseModule.forFeature([UserModelDefinition]),
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      secret: process.env.JWT_SECRET || 'secret',
       signOptions: { expiresIn: '1d' },
     }),
   ],

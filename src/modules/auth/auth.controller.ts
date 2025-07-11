@@ -16,8 +16,6 @@ export class AuthController {
   @Get('steam/return')
   @UseGuards(AuthGuard('steam'))
   async steamCallback(@Req() req, @Res() res: Response) {
-    console.log(req.user, 'REQ USER');
-
     const token = await this.authService.validateOrCreateSteamUser(req.user);
 
     console.log(token, 'TOKEN');
