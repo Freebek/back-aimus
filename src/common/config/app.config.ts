@@ -63,6 +63,6 @@ export const ValidatorConfig = {
 };
 
 export const JwtConfig = {
-  secret: process.env.JWT_SECRET_KEY || 'secret-key',
+  secret: process.env.JWT_SECRET_KEY || 'secret',
   expiresIn: process.env.JWT_EXPIRES_IN || '10d',
 };

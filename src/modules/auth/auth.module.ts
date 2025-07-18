@@ -13,7 +13,6 @@ import { UserModelDefinition } from 'src/models/schemas/user.schema';
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'secret',
-      signOptions: { expiresIn: '1d' },
     }),
   ],
   providers: [AuthService, SteamStrategy],
