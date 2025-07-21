@@ -13,8 +13,8 @@ export type UserDocument = User & Document;
 export class User {
   _id: ObjectId;
 
-  @Prop({ type: String, unique: true, sparse: true })
-  steam_id: string; // Steam ID (64-bit)
+  @Prop({ type: String, required: true, unique: true })
+  steam_id: string;
 
   @Prop({ type: String })
   steam_name: string;
@@ -22,8 +22,29 @@ export class User {
   @Prop({ required: false })
   steam_avatar: string;
 
-  @Prop({ type: Boolean, default: false })
-  is_steam_linked: boolean;
+  @Prop({ type: String, required: true, unique: true })
+  steam_id_64: string;
+
+  @Prop({ type: String, required: true, unique: true })
+  steam_id_32: string;
+
+  @Prop({ type: String, required: true, unique: true })
+  steam_id_3: string;
+
+  @Prop({ type: String, required: true })
+  profile_url: string;
+
+  @Prop({ type: String, required: true })
+  time_created: string;
+
+  @Prop({ type: String, required: true })
+  country: string;
+
+  @Prop({ type: String, required: true })
+  state: string;
+
+  @Prop({ type: String, required: true })
+  city: string;
 
   @Prop({ type: String, required: true })
   last_login_at: string;
