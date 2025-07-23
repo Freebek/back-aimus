@@ -20,6 +20,6 @@ export class AuthController {
 
     console.log(token, 'TOKEN');
 
-    return res.redirect(`http://localhost:27030/steam-success?token=${token}`);
+    return res.redirect(`https://aimus.uz/steam-success?token=${token}`);
   }
 }
