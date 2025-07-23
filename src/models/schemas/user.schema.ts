@@ -31,19 +31,19 @@ export class User {
   @Prop({ type: String, required: true, unique: true })
   steam_id_3: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: false })
   profile_url: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: false })
   time_created: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: false })
   country: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: false })
   state: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: false })
   city: string;
 
   @Prop({ type: String, required: true })
