@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { RconModule } from './modules/rcon/rcon.module';
 import { UserModule } from './modules/user/user.module';
+import { StatsModule } from './modules/stats/stats.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { appConfig, dbConfig, minioConfig } from './common/config/app.config';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -25,6 +26,7 @@ import { AuthModule } from './modules/auth/auth.module';
 
     RconModule,
     UserModule,
+    StatsModule,
     AuthModule,
   ],
   providers: [

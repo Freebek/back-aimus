@@ -33,6 +33,7 @@
     "class-validator": "^0.14.2",
     "minio": "^8.0.5",
     "mongodb": "^6.17.0",
+    "mysql2": "^3.3.0",
     "mongoose": "^8.16.1",
     "passport": "^0.7.0",
     "passport-steam": "^1.0.18",
