@@ -6,6 +6,10 @@ import {
   DB_NAME_TO_LABEL,
   DbCredentials,
 } from './db-hosts.constants';
+import { fetchSteamAvatars } from './steam-avatar.util';
+import * as process from 'process';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Injectable()
 export class StatsService {
@@ -122,14 +126,29 @@ export class StatsService {
       const rowsParams = params.concat([limit, offset]);
       const [rows] = await pool.query(sql, rowsParams);
 
-      // map rows and add steam_link
-      const data = (Array.isArray(rows) ? rows : []).map((row: any) => ({
+      // map rows and add steam_link and collect id64s
+      const data = (Array.isArray(rows) ? rows : []).map((row: any) => {
+        const steam64 = this.steam32To64(row.steam);
+        return {
+          ...row,
+          steam_link: `https://steamcommunity.com/profiles/${steam64}/`,
+          steam64,
+        };
+      });
+
+      // fetch avatars in batch
+      const apiKey = process.env.STEAM_API_KEY;
+      const steamIds = data.map((d) => d.steam64);
+      const avatarMap = await fetchSteamAvatars(steamIds, apiKey);
+
+      // add avatar param to each player
+      const dataWithAvatar = data.map((row) => ({
         ...row,
-        steam_link: this.getSteamLink(row.steam),
+        avatar: avatarMap[row.steam64] || '',
       }));
 
       return {
-        data,
+        data: dataWithAvatar,
         total: Number(total),
         page,
         limit,
