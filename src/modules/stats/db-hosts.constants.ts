@@ -1,3 +1,6 @@
+import * as process from 'process';
+import * as dotenv from 'dotenv';
+dotenv.config();
 export interface DbCredentials {
   host: string;
   port: number;
