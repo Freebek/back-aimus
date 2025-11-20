@@ -122,7 +122,7 @@ export class StatsService {
           ? (countRows[0] as any).total
           : 0;
 
-      const sql = `SELECT steam, name, value, rank, kills, deaths, shoots, hits, headshots, assists, round_win, round_lose, playtime, lastconnect FROM lvl_base ${where} ORDER BY rank DESC LIMIT ? OFFSET ?`;
+      const sql = `SELECT steam, name, value, rank, kills, deaths, shoots, hits, headshots, assists, round_win, round_lose, playtime, lastconnect FROM lvl_base ${where} ORDER BY value DESC LIMIT ? OFFSET ?`;
       const rowsParams = params.concat([limit, offset]);
       const [rows] = await pool.query(sql, rowsParams);
 
