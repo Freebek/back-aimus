@@ -26,4 +26,21 @@ export class UserService {
 
     return user;
   }
+
+  async updateOfertaRead(userId: string, ofertaRead: boolean) {
+    const user = await this.userModel.findByIdAndUpdate(
+      userId,
+      { oferta_read: ofertaRead },
+      { new: true },
+    );
+
+    if (!user) {
+      this.logger.debug(
+        `Method: ${this.updateOfertaRead.name} - User Not Found`,
+      );
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
+  }
 }

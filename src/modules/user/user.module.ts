@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
+import { OfertaController } from './oferta.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModelDefinition } from 'src/models/schemas/user.schema';
 import { JwtModule } from '@nestjs/jwt';
@@ -12,7 +13,7 @@ import { JwtModule } from '@nestjs/jwt';
       secret: process.env.JWT_SECRET || 'secret',
     }),
   ],
-  controllers: [UserController],
+  controllers: [UserController, OfertaController],
   providers: [UserService],
 })
 export class UserModule {}

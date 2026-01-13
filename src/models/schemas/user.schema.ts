@@ -49,6 +49,9 @@ export class User {
   @Prop({ type: String, required: true })
   last_login_at: string;
 
+  @Prop({ type: Boolean, required: false, default: false })
+  oferta_read: boolean;
+
   // @Prop({ type: String, required: true, maxlength: 200, minlength: 2 })
   // full_name: string;
 
